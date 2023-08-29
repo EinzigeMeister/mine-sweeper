@@ -15,3 +15,6 @@ class User(Base):
         return f"<User id={self.id}, " + \
             f"name={self.name}, " + \
             f"username = {self.username}>"
+    
+class game_statistics(Base):
+    
