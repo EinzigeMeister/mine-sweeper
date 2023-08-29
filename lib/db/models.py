@@ -16,5 +16,3 @@ class User(Base):
             f"name={self.name}, " + \
             f"username = {self.username}>"
     
-class game_statistics(Base):
-    
