@@ -1,12 +1,12 @@
 from art import *
 import os
-class Print:
+class Display:
     def welcome_message(self):
         tprint("minesweeper", font='block')
 
     def print_board(self, difficulty, board = {}):
     
-        size = Print.setSize(difficulty)
+        size = Display.setSize(difficulty)
         os.system('clear')
         print_line=" "
         for n in range(size):

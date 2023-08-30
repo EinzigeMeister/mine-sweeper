@@ -1,2 +1,2 @@
-from .print import Print
+from .display import Display
 #from .new_game import NewGame
