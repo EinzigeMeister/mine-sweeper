@@ -53,4 +53,27 @@ class GameBoard:
         return mine_loc
 
     def add_numbers(self, board):
-        pass
+        for x in range(board['size']):
+            for y in range(board['size']):
+                if (board[(x, y)]=='-'):
+                    adjacent_mines = 0
+                    if (self.can_search(x-1, y, board['size'])):
+                        if board[(x-1, y)]=='*': adjacent_mines+=1
+                    if (self.can_search(x-1, y-1, board['size'])):
+                        if board[(x-1, y-1)]=='*': adjacent_mines+=1
+                    if (self.can_search(x, y-1, board['size'])):
+                        if board[(x, y-1)]=='*': adjacent_mines+=1
+                    if (self.can_search(x+1, y-1, board['size'])):
+                        if board[(x+1, y-1)]=='*': adjacent_mines+=1
+                    if (self.can_search(x+1, y, board['size'])):
+                        if board[(x+1, y)]=='*': adjacent_mines+=1
+                    if (self.can_search(x+1, y+1, board['size'])):
+                        if board[(x+1, y+1)]=='*': adjacent_mines+=1
+                    if (self.can_search(x, y+1, board['size'])):
+                        if board[(x, y+1)]=='*': adjacent_mines+=1
+                    if (self.can_search(x-1, y+1, board['size'])):
+                        if board[(x-1, y+1)]=='*': adjacent_mines+=1
+                    board[(x,y)] = adjacent_mines
+
+    def can_search(self, x, y, size):
+        return not (x<0 or y<0 or x==size or y ==size)

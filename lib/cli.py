@@ -7,4 +7,4 @@ if __name__ == '__main__':
     display.welcome_message()
 
     game_board = GameBoard()
-    game_board.new_game('hard')
+    game_board.new_game('easy')

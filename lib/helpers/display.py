@@ -16,6 +16,6 @@ class Display:
         for n in range(size):
             print_line=str(n)
             for m in range(size):
-                print_line+= "  "+ board[(n,m)]
+                print_line+= "  "+ str(board[(n,m)])
             print(print_line)
 
