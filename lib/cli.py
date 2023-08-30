@@ -1,11 +1,10 @@
-from helpers import Display, Game
+from helpers import Display, GameBoard
 
-display = Display()
-display.welcome_message()
 
-board = {}
-for n in range(4):
-    for m in range(4):
-        mapTuple = (n, m)
-        board[mapTuple]="-"
     
+if __name__ == '__main__':
+    display = Display()
+    display.welcome_message()
+
+    game_board = GameBoard()
+    game_board.new_game('hard')

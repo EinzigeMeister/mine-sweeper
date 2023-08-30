@@ -1,2 +1,2 @@
 from .display import Display
-from .game import Game
+from .game_board import GameBoard

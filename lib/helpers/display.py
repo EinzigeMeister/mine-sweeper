@@ -4,9 +4,9 @@ class Display:
     def welcome_message(self):
         tprint("minesweeper", font='block')
 
-    def print_board(self, difficulty, board = {}):
-    
-        size = Display.setSize(difficulty)
+    #clears screen and prints current status of board
+    def print_board(self, board = {}):
+        size = board["size"]
         os.system('clear')
         print_line=" "
         for n in range(size):
@@ -19,11 +19,3 @@ class Display:
                 print_line+= "  "+ board[(n,m)]
             print(print_line)
 
-    @classmethod      
-    def setSize(cls, difficulty):
-        if (difficulty=='easy'):
-            return 4
-        elif (difficulty=='medium'):
-            return 7
-        elif (difficulty=='hard'):
-            return 9
