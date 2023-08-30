@@ -2,12 +2,13 @@ from art import *
 import os
 class Display:
     def welcome_message(self):
-        tprint("minesweeper", font='block')
+        tprint("minesweeper", font='rnd-medium')
 
     #clears screen and prints current status of board
     def print_board(self, board = {}):
         size = board["size"]
         os.system('clear')
+        self.welcome_message()
         print_line=" "
         for n in range(size):
             print_line+="  " + str(n)

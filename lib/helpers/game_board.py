@@ -1,4 +1,5 @@
 from helpers import Display
+from termcolor import colored
 import random
 display = Display()
 
@@ -13,6 +14,7 @@ class GameBoard:
         self.user_board = dict(self.game_board)
         self.generate_board(self.user_board)
         self.play()
+        return self.result
 
     def play(self):
         if self.result =="":
@@ -30,10 +32,10 @@ class GameBoard:
                 self.play()
             elif self.result =="L":
                 display.print_board(self.user_board)
-                print("You lose :(")
+                print(colored("You lose :(", "red"))
             elif self.result =="W":
                 display.print_board(self.game_board)
-                print("You win!")
+                print(colored("You win!", "green"))
 
     def setSize(self, difficulty):
         if (difficulty=='easy'):

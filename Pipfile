@@ -9,6 +9,7 @@ sqlalchemy = "==1.4.41"
 alembic = "*"
 faker = "*"
 art = "*"
+termcolor = "*"
 
 [dev-packages]
 
