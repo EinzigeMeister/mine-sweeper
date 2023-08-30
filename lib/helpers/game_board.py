@@ -3,21 +3,38 @@ import random
 display = Display()
 
 class GameBoard:
+    game_board = {}
+    user_board = {}
+    result = ""
     def new_game(self, difficulty):
-        game_board = {}
-        game_board['difficulty'] = difficulty
-        game_board['size'] = self.setSize(difficulty)
-        self.generate_board(game_board, self.add_mines(game_board))
+        self.game_board['difficulty'] = difficulty
+        self.game_board['size'] = self.setSize(difficulty)
+        self.generate_board(self.game_board, self.add_mines(self.game_board))
+        self.user_board = dict(self.game_board)
+        self.generate_board(self.user_board)
+        self.play()
 
-        self.play(game_board)
+    def play(self):
+        if self.result =="":
+            display.print_board(self.user_board)
+            x_coordinate = input("Enter a valid 'x' coordinate: ")
+            y_coordinate = input("Enter a valid 'y' coordinate: ")
+            if (not x_coordinate.isnumeric() or not y_coordinate.isnumeric() or int(x_coordinate)<0 or int(y_coordinate)<0 or int(x_coordinate)>=self.game_board['size'] or int(y_coordinate)>=self.game_board['size']):
+                self.play()
+                return
+            x_int = int(x_coordinate)
+            y_int = int(y_coordinate)
+            self.check_location((y_int,x_int))
+            self.check_win()
+            if (self.result==""):
+                self.play()
+            elif self.result =="L":
+                display.print_board(self.user_board)
+                print("You lose :(")
+            elif self.result =="W":
+                display.print_board(self.game_board)
+                print("You win!")
 
-    def play(self, board):
-        
-        user_board = dict(board)
-
-        display.print_board(user_board)
-        print("")
-   
     def setSize(self, difficulty):
         if (difficulty=='easy'):
             return 4
@@ -77,3 +94,17 @@ class GameBoard:
 
     def can_search(self, x, y, size):
         return not (x<0 or y<0 or x==size or y ==size)
+    
+    def check_location(self, loc):
+        if not self.user_board[loc] =="-":
+            return
+        if self.game_board[loc]=="*":
+            self.result = "L"
+        self.user_board[loc]=self.game_board[loc]
+
+    def check_win(self):
+        for n in range (self.game_board['size']):
+            for m in range (self.game_board['size']):
+                if not (str(self.game_board[(n, m)])==str(self.user_board[(n, m)]) or (str(self.game_board[(n, m)])=='*' and str(self.user_board[(n, m)])=='-')):
+                    return
+        self.result = "W"
