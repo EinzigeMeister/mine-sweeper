@@ -38,11 +38,11 @@ class GameBoard:
                 print(colored("You win!", "green"))
 
     def setSize(self, difficulty):
-        if (difficulty=='easy'):
+        if (difficulty=='Easy'):
             return 4
-        elif (difficulty=='medium'):
+        elif (difficulty=='Medium'):
             return 6
-        elif (difficulty=='hard'):
+        elif (difficulty=='Hard'):
             return 9
     
     def generate_board(self, board, mine_loc = []):

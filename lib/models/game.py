@@ -9,6 +9,11 @@ class Game(Base):
     difficulty = Column('game_difficulty', String())
     outcome = Column('game_outcome', String())
 
+    @classmethod
+    def add_game(cls, session, game):
+        session.add(game)
+        session.commit()
+
     def __repr__(self):
         return f"<Game id={self.id}, " + \
             f"user={self.user_username}, " + \

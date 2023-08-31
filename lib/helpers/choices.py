@@ -1,6 +1,6 @@
 import os
-from helpers import GameBoard
-from models import User
+from helpers import GameBoard, session
+from models import Game
 class Choices:
     @classmethod
     def main_menu(cls, user):
@@ -20,19 +20,22 @@ class Choices:
         os.system('clear')
         game_board = GameBoard()
         difficulty = cls.choose_difficulty(cls)
-        result = game_board.new_game(difficulty)
+        outcome = game_board.new_game(difficulty)
+        game_record = Game(user_username=user.username, difficulty=difficulty, outcome=outcome)
+        print(game_record)
+        input("cont")
+        Game.add_game(session, game_record)
+
         input("Press enter to continue")
     
     def choose_difficulty(self):
-        options = ["", "easy", "medium", "hard"]
+        options = ["", "Easy", "Medium", "Hard"]
         print("Difficulty Options: ")
         print("1. Easy")
         print("2. Medium")
         print("3. Hard")
-        difficulty_selection = input("Please select a difficulty")
+        difficulty_selection = input("Please select a difficulty: ")
         if difficulty_selection.isnumeric() and int(difficulty_selection)>0 and int(difficulty_selection)<4:
-            print(options[int(difficulty_selection)])
-            input('cont')
             return options[int(difficulty_selection)]
         else:
             os.system('clear')
