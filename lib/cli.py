@@ -8,7 +8,7 @@ if __name__ == '__main__':
         user_logged_in = Login()
     menu_option_selected = 0
     while not menu_option_selected ==4:
-        menu_option_selected = Choices.main_menu(user_logged_in.user)
+        menu_option_selected = Choices.main_menu(user_logged_in.get_username())
         if menu_option_selected == 1:
             Choices.show_user_results()
         if menu_option_selected == 2:

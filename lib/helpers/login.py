@@ -13,7 +13,20 @@ class Login:
          print("No username detected, try again.")
          self.user_login()
       else:
-         self.user = user_selection
+         found_user = session.query(User).filter(User.username==user_selection).first()
+         print(found_user)
+         if not found_user:
+            print("Creating new user: ")
+            new_user_name = self.set_user_name(input("Please enter your name: "))
+            self.user = User(name = new_user_name, username=user_selection)
+            User.add_user(session, self.user)
+         else:
+            self.user = found_user
       
-   def get_user(self):
-      return self.user
+   def get_username(self):
+      return self.user.username
+   
+   def set_user_name(self, name):
+      if len(name)>0 and len(name) <50:
+         return name
+      else: return self.set_user_name(input("Please enter your name: "))

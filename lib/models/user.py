@@ -10,6 +10,14 @@ class User(Base):
     username = Column('user_username', String())
     games = relationship('Game', backref='user')
 
+    @classmethod
+    def find_user_by_username(cls, session, username):
+        return session.query(User).filter(User.username == username).first()
+    @classmethod
+    def add_user(cls, session, user):
+        session.add(user)
+        session.commit()
+
     def __repr__(self):
         return f"<User id={self.id}, " + \
             f"name={self.name}, " + \
