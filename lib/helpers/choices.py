@@ -44,8 +44,10 @@ class Choices:
             print("Enter a valid option")
             self.choose_difficulty()
 
-    def show_user_results(self, user):
-        print("I'm sorry this function isn't available yet")
+    def show_user_results(self, user_logged_in):
+        user = user_logged_in.user
+        user_results = session.query(Game).filter(Game.user_username == user.username)
+        for res in user_results: print(res)
         input("Press enter to continue")
 
     def show_recent_results(self, user):
