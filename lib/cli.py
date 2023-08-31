@@ -1,6 +1,6 @@
-from helpers import Display, GameBoard, Choices, Login
+from helpers import Display, GameBoard, Choices, Login, session
 if __name__ == '__main__':
-
+    choices = Choices()
     display = Display()
     display.welcome_message()
     user_logged_in = None
@@ -8,15 +8,13 @@ if __name__ == '__main__':
         user_logged_in = Login()
     menu_option_selected = 0
     while not menu_option_selected ==4:
-        print(user_logged_in.user)
-        print('cont')
-        menu_option_selected = Choices.main_menu(user_logged_in.user)
+        menu_option_selected = choices.main_menu(user_logged_in)
         if menu_option_selected == 1:
-            Choices.show_user_results(user_logged_in.user)
+            choices.show_user_results(user_logged_in)
         if menu_option_selected == 2:
-            Choices.show_recent_results
+            choices.show_recent_results(user_logged_in)
         if menu_option_selected == 3:
-            Choices.play_game(user_logged_in.user)
+            choices.play_game(user_logged_in)
         if menu_option_selected == 4:
             print("Goodbye!")
 

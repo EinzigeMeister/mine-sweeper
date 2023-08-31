@@ -1,9 +1,12 @@
 import os
-from helpers import GameBoard, session
+from .game_board import GameBoard
+from .session import session
+from sqlalchemy import create_engine
 from models import Game
+
 class Choices:
-    @classmethod
-    def main_menu(cls, user):
+    def main_menu(self, user_logged_in):
+         user = user_logged_in.user
          os.system('clear')
          print(f'Welcome, {user.username}! How can I help you today?')
          print("1) View your recent games")
@@ -15,15 +18,14 @@ class Choices:
             try_selected = input("Please select a valid option: ")
             if (try_selected.isnumeric() and int(try_selected)>0 and int(try_selected)<5): menu_option_selected = int(try_selected)
          return menu_option_selected
-    @classmethod
-    def play_game(cls, user):
+    
+    def play_game(self, user_logged_in):
+        user = user_logged_in.user
         os.system('clear')
         game_board = GameBoard()
-        difficulty = cls.choose_difficulty(cls)
+        difficulty = self.choose_difficulty()
         outcome = game_board.new_game(difficulty)
         game_record = Game(user_username=user.username, difficulty=difficulty, outcome=outcome)
-        print(game_record)
-        input("cont")
         Game.add_game(session, game_record)
 
         input("Press enter to continue")
@@ -42,12 +44,10 @@ class Choices:
             print("Enter a valid option")
             self.choose_difficulty()
 
-    @classmethod
-    def show_user_results(cls, user):
+    def show_user_results(self, user):
         print("I'm sorry this function isn't available yet")
         input("Press enter to continue")
 
-    @classmethod
-    def show_recent_results(self):
+    def show_recent_results(self, user):
         print("I'm sorry this function isn't available yet")
         input("Press enter to continue")

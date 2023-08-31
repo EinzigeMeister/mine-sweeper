@@ -60,11 +60,11 @@ class GameBoard:
         difficulty = board['difficulty']
         size = board['size']
         mines=0
-        if (difficulty=='easy'):
+        if (difficulty=='Easy'):
             mines=3
-        elif (difficulty=='medium'):
+        elif (difficulty=='Medium'):
             mines=10
-        elif (difficulty=='hard'):
+        elif (difficulty=='Hard'):
             mines=27
         mine_range = range(0,size*size)
         mine_loc = random.sample(mine_range, mines)
