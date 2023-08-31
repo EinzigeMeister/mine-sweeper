@@ -1,11 +1,8 @@
 from helpers import Display, GameBoard, Choices
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+
     
 if __name__ == '__main__':
-    engine = create_engine("sqlite:///mine_data.db")
-    Session = sessionmaker(bind=engine)
-    session = Session()
+  
 
     display = Display()
     display.welcome_message()
@@ -17,7 +14,11 @@ if __name__ == '__main__':
     while not menu_option_selected ==4:
         menu_option_selected = Choices.main_menu(user_logged_in)
         if menu_option_selected == 1:
-            Choices.view_user_results()
+            Choices.show_user_results()
+        if menu_option_selected == 2:
+            Choices.show_recent_results
         if menu_option_selected == 3:
             Choices.play_game()
+        if menu_option_selected == 4:
+            print("Goodbye!")
 
