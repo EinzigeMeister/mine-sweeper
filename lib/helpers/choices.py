@@ -1,7 +1,7 @@
 import os
 from .game_board import GameBoard
 from .session import session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 from models import Game
 
 class Choices:
@@ -46,10 +46,11 @@ class Choices:
 
     def show_user_results(self, user_logged_in):
         user = user_logged_in.user
-        user_results = session.query(Game).filter(Game.user_username == user.username)
+        user_results = session.query(Game).filter(Game.user_username == user.username).limit(10)
         for res in user_results: print(res)
         input("Press enter to continue")
 
-    def show_recent_results(self, user):
-        print("I'm sorry this function isn't available yet")
+    def show_recent_results(self, user_logged_in):
+        all_results = session.query(Game).order_by(desc(Game.id)).limit(10)
+        for res in all_results: print(res)
         input("Press enter to continue")
