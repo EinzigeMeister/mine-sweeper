@@ -1,7 +1,9 @@
 from helpers import Display, GameBoard, Choices, Login, session
+import os
 if __name__ == '__main__':
     choices = Choices()
     display = Display()
+    os.system('clear')
     display.welcome_message()
     user_logged_in = None
     while not user_logged_in:
