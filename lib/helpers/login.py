@@ -14,7 +14,6 @@ class Login:
          self.user_login()
       else:
          found_user = session.query(User).filter(User.username==user_selection).first()
-         print(found_user)
          if not found_user:
             print("Creating new user: ")
             new_user_name = self.set_user_name(input("Please enter your name: "))
