@@ -19,7 +19,7 @@ class Choices:
     def play_game(cls, user):
         os.system('clear')
         game_board = GameBoard()
-        difficulty = self.choose_difficulty()
+        difficulty = cls.choose_difficulty(cls)
         result = game_board.new_game(difficulty)
         input("Press enter to continue")
     
@@ -30,17 +30,20 @@ class Choices:
         print("2. Medium")
         print("3. Hard")
         difficulty_selection = input("Please select a difficulty")
-        if difficulty_selection>0 and difficulty_selection<4:
-            return options[difficulty_selection]
+        if difficulty_selection.isnumeric() and int(difficulty_selection)>0 and int(difficulty_selection)<4:
+            print(options[int(difficulty_selection)])
+            input('cont')
+            return options[int(difficulty_selection)]
         else:
             os.system('clear')
             print("Enter a valid option")
+            self.choose_difficulty()
 
     @classmethod
     def show_user_results(cls, user):
         print("I'm sorry this function isn't available yet")
         input("Press enter to continue")
-        
+
     @classmethod
     def show_recent_results(self):
         print("I'm sorry this function isn't available yet")
